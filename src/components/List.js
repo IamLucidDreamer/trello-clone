@@ -8,20 +8,19 @@ const List = ({ category, index, listData, setListData }) => {
 
   const onDrop = (e, index) => {
     let taskData = e.dataTransfer.getData("taskData");
-    console.log(taskData, "Object data");
-    console.log(index, "data onDrop");
     taskData = JSON.parse(taskData);
     taskData.id = Math.random();
-    const categoryCopy = category
-    categoryCopy.cards.push(taskData)
-    console.log(categoryCopy ,"categoryCopy");
-    console.log(...listData.splice(0, index), "initial Data splice");
+    const categoryCopy = category;
+    categoryCopy.cards.push(taskData);
     const newData = [
-      ...listData.splice(0, index),
-        categoryCopy,
-      ...listData.splice(index + 1),
+      ...listData.slice(0, index),
+      categoryCopy,
+      ...listData.slice(index + 1),
     ];
-    console.log(newData, "newData");
+    newData[taskData.startCategory].cards = newData[
+      taskData.startCategory
+    ].cards.filter((val) => val.title !== taskData.title);
+
     setListData(newData);
   };
 
@@ -37,7 +36,7 @@ const List = ({ category, index, listData, setListData }) => {
       </h1>
       <div className="p-4 border-t-2 border-gray-600">
         {category.cards.map((task) => (
-          <ListElement task={task} />
+          <ListElement key={Math.random()} task={task} categoryIndex={index} />
         ))}
         <div className="mt-6">
           <textarea

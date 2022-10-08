@@ -7,18 +7,15 @@ function App() {
     {
       id: "PLANNED",
       title: "Planned Tasks",
-      label: "20/70",
       cards: [],
     },
     {
       id: "WIP",
       title: "Work In Progress",
-      label: "10/20",
       cards: [
         {
           id: "Wip1",
           title: "Clean House",
-          label: "30 mins",
           description:
             "Soap wash and polish floor. Polish windows and doors. Scrap all broken glasses",
         },
@@ -27,13 +24,11 @@ function App() {
     {
       id: "BLOCKED",
       title: "Blocked",
-      label: "0/0",
       cards: [],
     },
     {
       id: "COMPLETED",
       title: "Completed",
-      label: "2/5",
       cards: [
         {
           id: "Completed1",
@@ -52,7 +47,6 @@ function App() {
     {
       id: "REPEAT",
       title: "Repeat",
-      label: "1/1",
       cards: [
         {
           id: "Repeat1",
@@ -65,7 +59,6 @@ function App() {
     {
       id: "ARCHIVED",
       title: "Archived",
-      label: "1/1",
       cards: [
         {
           id: "Archived1",
@@ -75,33 +68,9 @@ function App() {
         },
       ],
     },
-    {
-      id: "ARCHIVED2",
-      title: "Archived2",
-      label: "1/1",
-      cards: [
-        {
-          id: "Archived2",
-          title: "Go Jogging",
-          label: "300 mins",
-          description: "Completed 10km on cycle",
-        },
-      ],
-    },
-    {
-      id: "ARCHIVED3",
-      title: "Archived3",
-      label: "1/1",
-      cards: [
-        {
-          id: "Archived3",
-          title: "Go Cycling",
-          label: "300 mins",
-          description: "Completed 10km on cycle",
-        },
-      ],
-    },
   ]);
+
+  console.log(listData , "Inital List data app ");
 
   return (
     <div className="min-h-screen bg-secondary">
@@ -109,7 +78,7 @@ function App() {
       <div className="flex p-5 pt-20 gap-8">
         {listData.map((list, index) => (
           <List
-            key={list.id + list.title}
+            key={Math.random()}
             category={list}
             index={index}
             listData={listData}
