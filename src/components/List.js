@@ -29,23 +29,33 @@ const List = ({ category, index, listData, setListData }) => {
       draggable
       onDragOver={(e) => onDragOver(e)}
       onDrop={(e) => onDrop(e, index)}
-      className="rounded shadow-primary shadow-md bg-alternate w-76 border-2 border-primary"
+      style={{ minWidth: "300px" }}
     >
-      <h1 className="py-2 text-center text-lg text-white bg-secondary">
-        {category.title}
-      </h1>
-      <div className="p-4 border-t-2 border-gray-600">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center">
+          <h1
+            className="m-1 px-2.5 py-1 text-sm font-bold text-gray-800 rounded"
+            style={{
+              backgroundColor:
+                "#" + (((1 << 24) * Math.random()) | 0).toString(16) + "50",
+            }}
+          >
+            {category.title}
+          </h1>
+          <h1 className="mx-1 text-sm font-bold text-gray-800">
+            {category.cards.length}
+          </h1>
+        </div>
+        <div>
+          <button className="text-gray-800 text-2xl">+</button>
+        </div>
+      </div>
+      <div className="">
         {category.cards.map((task) => (
           <ListElement key={Math.random()} task={task} categoryIndex={index} />
         ))}
-        <div className="mt-6">
-          <textarea
-            className="bg-gray-600 border-2 rounded p-2 border-primary placeholder-gray-200 outline-0 text-gray-200 w-full"
-            placeholder="Add New Task"
-          />
-          <button className="text-center bg-primary w-full rounded py-2 font-bold">
-            ADD
-          </button>
+        <div className="mt-auto">
+          <button className=" text-gray-800 text-2xl flex items-center">+ <span className="text-sm mt-1 ml-1">New</span></button>
         </div>
       </div>
     </div>

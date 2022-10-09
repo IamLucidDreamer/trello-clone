@@ -11,10 +11,10 @@ const ListElement = ({task , categoryIndex}) => {
     <div
       draggable
       onDragStart={(e) => {task.startCategory = categoryIndex; onDragStart(e, task)}}
-      className="my-3.5 bg-gray-100 shadow-primary shadow-sm p-2 rounded"
+      className="my-3.5 bg-gray-100 shadow-gray-400 shadow-sm p-2 rounded"
     >
       <p className="text-secondary">
-       { task.description}
+       { task.title}
       </p>
     </div>
   );

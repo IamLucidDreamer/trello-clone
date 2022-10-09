@@ -70,10 +70,10 @@ function App() {
     },
   ]);
 
-  console.log(listData , "Inital List data app ");
+  console.log(listData, "Inital List data app ");
 
   return (
-    <div className="min-h-screen bg-secondary">
+    <div className="min-h-screen bg-gray-100 overflow-scroll">
       <Header />
       <div className="flex p-5 pt-20 gap-8">
         {listData.map((list, index) => (
@@ -85,10 +85,8 @@ function App() {
             setListData={setListData}
           />
         ))}
-        <div>
-          <button className="flex items-center justify-center text-center bg-primary w-12 h-12 font-bold rounded-full text-4xl shadow shadow-primary">
-            <h1 className="pb-2 text-secondary">+</h1>
-          </button>
+        <div className=" ">
+          <button className="text-gray-800 text-2xl flex items-center justify-center w-12 h-12 bg-gray-300 rounded-full pb-1">+</button>
         </div>
       </div>
     </div>

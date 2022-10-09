@@ -2,12 +2,12 @@ import React from "react";
 
 const Header = () => {
   return (
-    <header className="text-gray-600 body-font bg-alternate shadow-primary shadow-sm fixed w-full">
+    <header className="text-gray-600 body-font bg-gray-300 shadow-gray-600 shadow-sm fixed w-full">
       <div className="container mx-auto flex flex-wrap justify-between px-5 py-3 flex-col md:flex-row items-center">
         <div className="flex title-font font-medium items-center mb-2 md:mb-0">
-          <span className="ml-3 text-2xl text-primary">Your-Trello-Board</span>
+          <span className="ml-3 text-2xl text-gray-900">Your-Trello-Board</span>
         </div>
-        <button className="font-bold inline-flex items-center bg-primary border-0 py-1 px-3 focus:outline-none hover:bg-secondary rounded text-base mt-4 md:mt-0 text-secondary hover:text-primary transition duration-300">
+        <button className="font-bold inline-flex items-center bg-gray-700 border-0 py-1 px-3 focus:outline-none hover:bg-gray-800 rounded text-base mt-4 md:mt-0 text-white transition duration-300">
           Login
           <svg
             fill="none"
