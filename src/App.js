@@ -1,74 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import AddCategroy from "./components/AddCategroy";
 import Header from "./components/Header";
 import List from "./components/List";
 
 function App() {
-  const [listData, setListData] = useState([
-    {
-      id: "PLANNED",
-      title: "Planned Tasks",
-      cards: [],
-    },
-    {
-      id: "WIP",
-      title: "Work In Progress",
-      cards: [
-        {
-          id: "Wip1",
-          title: "Clean House",
-          description:
-            "Soap wash and polish floor. Polish windows and doors. Scrap all broken glasses",
-        },
-      ],
-    },
-    {
-      id: "BLOCKED",
-      title: "Blocked",
-      cards: [],
-    },
-    {
-      id: "COMPLETED",
-      title: "Completed",
-      cards: [
-        {
-          id: "Completed1",
-          title: "Practice Meditation",
-          label: "15 mins",
-          description: "Use Headspace app",
-        },
-        {
-          id: "Completed2",
-          title: "Maintain Daily Journal",
-          label: "15 mins",
-          description: "Use Spreadsheet for now",
-        },
-      ],
-    },
-    {
-      id: "REPEAT",
-      title: "Repeat",
-      cards: [
-        {
-          id: "Repeat1",
-          title: "Morning Jog",
-          label: "30 mins",
-          description: "Track using fitbit",
-        },
-      ],
-    },
-    {
-      id: "ARCHIVED",
-      title: "Archived",
-      cards: [
-        {
-          id: "Archived1",
-          title: "Go Trekking",
-          label: "300 mins",
-          description: "Completed 10km on cycle",
-        },
-      ],
-    },
-  ]);
+  const [addCategroy, setAddCategroy] = useState(false);
+  const [addIndex, setAddIndex] = useState(0);
+  const [listData, setListData] = useState([]);
+
+  const setInitialData = () => {
+    setListData(JSON.parse(localStorage.getItem("listData")));
+  };
+
+  useEffect(() => {
+    if (listData.length !== 0) {
+      localStorage.setItem("listData", JSON.stringify(listData));
+    }
+  }, [listData]);
+
+  useEffect(() => {
+    if (localStorage.getItem("listData") === null) {
+      localStorage.setItem("listData", JSON.stringify([]));
+    }
+    if (listData.length === 0) {
+      setInitialData();
+    }
+  }, []);
 
   console.log(listData, "Inital List data app ");
 
@@ -83,12 +40,30 @@ function App() {
             index={index}
             listData={listData}
             setListData={setListData}
+            setAddCategroy={setAddCategroy}
+            addNewlistitem={setAddIndex}
           />
         ))}
         <div className=" ">
-          <button className="text-gray-800 text-2xl flex items-center justify-center w-12 h-12 bg-gray-300 rounded-full pb-1">+</button>
+          <button
+            className="text-gray-800 text-2xl flex items-center justify-center w-12 h-12 bg-gray-300 rounded-full pb-1"
+            onClick={() => {
+              setAddIndex(listData.length);
+              setAddCategroy(true);
+            }}
+          >
+            +
+          </button>
         </div>
       </div>
+      {addCategroy && (
+        <AddCategroy
+          closeModal={setAddCategroy}
+          addNewCategory={setListData}
+          listData={listData}
+          index={addIndex}
+        />
+      )}
     </div>
   );
 }
